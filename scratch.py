@@ -5,41 +5,30 @@ Created on Sat Jul 18 16:28:26 2020
 
 @author: rabiyanoori
 """
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
-# First create some toy data:
-x = np.linspace(0, 2*np.pi, 400)
-y = np.sin(x**2)
+t = np.arange(0.0, 2.0, 0.01)
 
-# # Creates just a figure and only one subplot
-# fig, ax = plt.subplots()
-# ax.plot(x, y)
-# ax.set_title('Simple plot')
+s1 = np.sin(2 * np.pi * t)
+s2 = np.exp(-t)
+s3 = s1 * s2
 
-# # Creates two subplots and unpacks the output array immediately
-# f, (ax1, ax2) = plt.subplots(1, 2, sharey=True)
-# ax1.plot(x, y)
-# ax1.set_title('Sharing Y axis')
-# ax2.scatter(x, y)
+fig, axs = plt.subplots(3, 1, sharex=True)
+# Remove horizontal space between axes
+fig.subplots_adjust(hspace=0)
 
-# # Creates four polar axes, and accesses them through the returned array
-# fig, axes = plt.subplots(2, 2, subplot_kw=dict(polar=True))
-# axes[0, 0].plot(x, y)
-# axes[1, 1].scatter(x, y)
+# Plot each graph, and manually set the y tick values
+axs[0].plot(t, s1)
+axs[0].set_yticks(np.arange(-0.9, 1.0, 0.4))
+axs[0].set_ylim(-1, 1)
 
-# Share a X axis with each column of subplots
-plt.subplots(2, 1, sharex='col')
+axs[1].plot(t, s2)
+axs[1].set_yticks(np.arange(0.1, 1.0, 0.2))
+axs[1].set_ylim(0, 1)
 
-# Share a Y axis with each row of subplots
-plt.subplots(2, 2, sharey='row')
+axs[2].plot(t, s3)
+axs[2].set_yticks(np.arange(-0.9, 1.0, 0.4))
+axs[2].set_ylim(-1, 1)
 
-# Share both X and Y axes with all subplots
-plt.subplots(2, 2, sharex='all', sharey='all')
-
-# Note that this is the same as
-plt.subplots(2, 2, sharex=True, sharey=True)
-
-# Creates figure number 10 with a single subplot
-# and clears it if it already exists.
-fig, ax=plt.subplots(num=10, clear=True)
+plt.show()
