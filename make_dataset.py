@@ -27,18 +27,18 @@ Barrick Gold Corporation (mining)
 usd currency index
 S&p500
 dow jones
+NASDAQ Composite
 S&P/TSX Composite index
 
 """
-tickers = ["GC=F",
-           "GLD",
-           "^GSPC",
-           "GOLD",
-           "DX-Y.NYB?P=DX-Y.NYB",
-           "^DJI",
-           "^IXIC",
-           "^GSPTSE"
-           ]
+tickers = ['GC=F',
+           'GLD',
+           'GOLD',
+           'DX-Y.NYB?P=DX-Y.NYB',
+           '^GSPC',
+           '^DJI',
+           '^IXIC',
+           '^GSPTSE']
 
 #gather 'close' values for each     
 res = []     
@@ -49,19 +49,16 @@ for t in tickers:
 
 all_close = pd.concat(res, axis = 1)
 
-# subplots
+# subplots starting from certain year, looked at all then zoomed in
 axes = all_close.loc['2020':].plot(marker='.', alpha=0.5, linestyle='None', 
-                      figsize=(11, 9), subplots=True)
+                      figsize=(11, 15), subplots=True)
+
+#TODO: add ylabel and title
+
+#%% Creating training and testing data
 
 
-#%%
 
-# gold futures
-gcf = yf.Ticker("GC=F").history(period="max")
-gcf = gcf.loc[:end_dt]
-
-#SPDR
-spdr = yf.Ticker("GLD").history(period="max")
 
 
 
