@@ -5,9 +5,16 @@ Downloading the dataset
 
 import yfinance as yf
 
-msft = yf.Ticker("MSFT")
-# get stock info
-print(msft.info)
+#%% import the data from yahoo finance
 
-# get historical market data
-hist = msft.history(period="5d")
+# gold futures
+gcf = yf.Ticker("GC=F")
+gcf = gcf.history(period="max")
+
+# USD currency
+
+#Gold ETF
+
+#Jewellry stock 
+
+#%%
