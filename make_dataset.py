@@ -16,9 +16,8 @@ future_dt = '2020-07-24'
 
 # we have training data until July 10 because the 
 # predicted price for that is July 17
-#TODO: when do we start collecting data from?
 
-#%% 
+#%% Creating training and testing data
 """
 gold futures
 SPDR GLD - gold investment fund
@@ -40,6 +39,10 @@ tickers = ['GC=F',
            '^IXIC',
            '^GSPTSE']
 
+data = yf.Ticker('GC=F').history(period="max")['Close']
+
+#%%
+
 #gather 'close' values for each     
 res = []     
 for t in tickers:
@@ -49,22 +52,14 @@ for t in tickers:
 
 all_close = pd.concat(res, axis = 1)
 
-# subplots starting from certain year, looked at all then zoomed in
-axes = all_close.loc['2020':].plot(marker='.', alpha=0.5, linestyle='None', 
-                      figsize=(11, 15), subplots=True)
-
-#TODO: add ylabel and title
-
-#%% Creating training and testing data
 
 
 
 
+gcf = yf.Ticker('GC=F').history(period="max")['Close'].loc['2013':end_dt]
 
 
-#TODO: create training and test sets
+
+
 # y - predicted future close price gcf
 # x all the feature closing values 7 days prior
-#%% Initial data explore and viz
-
-# plot all stacked
